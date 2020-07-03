@@ -39,6 +39,10 @@ public class Menu {
 				break;
 			case 2:
 				System.out.println("Foi digitada a opcao 2");
+				scanner.nextLine();
+				System.out.println("Digite o titulo da anotacao");
+				String titulo2 = scanner.nextLine();
+				gerenciador.removerAnotacao(titulo2);
 				break;
 			case 3:
 				System.out.println("Foi digitada a opcao 3");
