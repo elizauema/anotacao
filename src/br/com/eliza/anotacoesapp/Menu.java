@@ -28,17 +28,10 @@ public class Menu {
 			
 			switch(opcaoDigitada) {
 			case 1:
-				scanner.nextLine();
-				System.out.println("Digite o titulo da anotacao");
-				String titulo = scanner.nextLine();
-				System.out.println("Digite o corpo da anotacao");
-				String corpo = scanner.nextLine();
-				Anotacao anotacao = new Anotacao(titulo, corpo);
-				gerenciador.criarAnotacao(anotacao);
-				System.out.println("Anotacao criada");
+				criarAnotacao(scanner, gerenciador);
 				break;
 			case 2:
-				System.out.println("Foi digitada a opcao 2");
+				//03/07/2020: extrair essa lógica para um método separado
 				scanner.nextLine();
 				System.out.println("Digite o titulo da anotacao");
 				String titulo2 = scanner.nextLine();
@@ -48,11 +41,16 @@ public class Menu {
 				System.out.println("Foi digitada a opcao 3");
 				break;
 			case 4:
+				//03/07/2020: extrair essa lógica para um método separado
 				System.out.println("Lista de anotacoes:");
 				gerenciador.listarAnotacoes();
 				break;
 			case 5:
-				System.out.println("Foi digitada a opcao 5");
+				//03/07/2020: extrair essa lógica para um método separado
+				scanner.nextLine();
+				System.out.println("Digite o titulo da anotacao");
+				String titulo3 = scanner.nextLine();
+				gerenciador.mostrarAnotacaoPeloTitulo(titulo3);
 				break;
 			case 6:
 				System.out.println("Foi digitada a opcao 6");
@@ -65,6 +63,17 @@ public class Menu {
 		
 		scanner.close();
 
+	}
+
+	private static void criarAnotacao(Scanner scanner, GerenciadorDeAnotacoes gerenciador) {
+		scanner.nextLine();
+		System.out.println("Digite o titulo da anotacao");
+		String titulo = scanner.nextLine();
+		System.out.println("Digite o corpo da anotacao");
+		String corpo = scanner.nextLine();
+		Anotacao anotacao = new Anotacao(titulo, corpo);
+		gerenciador.criarAnotacao(anotacao);
+		System.out.println("Anotacao criada");
 	}
 	
 	private static void limparTela() {

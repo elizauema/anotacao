@@ -45,6 +45,9 @@ public class GerenciadorDeAnotacoes {
 	// iterar(fazer um for, não precisa de Iterator) por todos elementos da lista
 	// colocar um if dentro do for e se achar o título certo imprimir a anotação
 	// usando syso
+	
+	//03/07/2020 - licao de casa:
+	//colocar uma mensagem caso nao encontre o titulo informado. Exemplo: Anotacao inexistente.
 }
 
 
