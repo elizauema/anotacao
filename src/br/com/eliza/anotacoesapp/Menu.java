@@ -32,28 +32,21 @@ public class Menu {
 				break;
 			case 2:
 				//03/07/2020: extrair essa lógica para um método separado
-				scanner.nextLine();
-				System.out.println("Digite o titulo da anotacao");
-				String titulo2 = scanner.nextLine();
-				gerenciador.removerAnotacao(titulo2);
+				removerAnotacao(scanner, gerenciador);
 				break;
 			case 3:
 				System.out.println("Foi digitada a opcao 3");
 				break;
 			case 4:
 				//03/07/2020: extrair essa lógica para um método separado
-				System.out.println("Lista de anotacoes:");
-				gerenciador.listarAnotacoes();
+				listarAnotacoes(scanner, gerenciador);
 				break;
 			case 5:
 				//03/07/2020: extrair essa lógica para um método separado
-				scanner.nextLine();
-				System.out.println("Digite o titulo da anotacao");
-				String titulo3 = scanner.nextLine();
-				gerenciador.mostrarAnotacaoPeloTitulo(titulo3);
+				mostrarAnotacaoPeloTitulo(scanner, gerenciador);
 				break;
 			case 6:
-				System.out.println("Foi digitada a opcao 6");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Opcao invalida");
@@ -81,5 +74,20 @@ public class Menu {
 			System.out.println();
 		}
 	}
-
+	private static void removerAnotacao(Scanner scanner,GerenciadorDeAnotacoes gerenciador) {
+		scanner.nextLine();
+		System.out.println("Digite o titulo da anotacao");
+		String titulo = scanner.nextLine();
+		gerenciador.removerAnotacao(titulo);
+	}
+	private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoes gerenciador) {
+		System.out.println("Lista de anotacoes:");
+		gerenciador.listarAnotacoes();
+	}
+	private static void mostrarAnotacaoPeloTitulo(Scanner scanner,GerenciadorDeAnotacoes gerenciador) {
+		scanner.nextLine();
+		System.out.println("Digite o titulo da anotacao");
+		String titulo = scanner.nextLine();
+		gerenciador.mostrarAnotacaoPeloTitulo(titulo);
+	}
 }

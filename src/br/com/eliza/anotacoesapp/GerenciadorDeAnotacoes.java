@@ -36,10 +36,15 @@ public class GerenciadorDeAnotacoes {
 	}
 
 	public void mostrarAnotacaoPeloTitulo(String tituloAnotacao) {
+		boolean achei = false;
 		for (int i=0;i< anotacoes.size();i++) {
 			if (anotacoes.get(i).getTitulo().equals(tituloAnotacao) ) {
+				achei = true;
 				System.out.println(anotacoes.get(i));
 			}
+		}
+		if (achei == false) {
+			System.out.println("Anotação inexistente");
 		}
 	}
 	// iterar(fazer um for, não precisa de Iterator) por todos elementos da lista
