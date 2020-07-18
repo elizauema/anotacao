@@ -52,7 +52,7 @@ class Pessoa{
 	}
 }
 
-public class Teste2 {
+public class ExemploHashCodeEquals {
 	
 	public static void main(String[] args) {
 		

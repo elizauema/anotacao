@@ -3,7 +3,7 @@ package teste;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Teste {
+public class ExemplosComArraysEListas {
 
 	public static void main(String[] args) {
 		
