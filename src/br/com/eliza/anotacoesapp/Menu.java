@@ -36,6 +36,7 @@ public class Menu {
 				break;
 			case 3:
 				System.out.println("Foi digitada a opcao 3");
+				editarAnotacao(scanner,gerenciador);
 				break;
 			case 4:
 				//03/07/2020: extrair essa lógica para um método separado
@@ -79,6 +80,14 @@ public class Menu {
 		System.out.println("Digite o titulo da anotacao");
 		String titulo = scanner.nextLine();
 		gerenciador.removerAnotacao(titulo);
+	}
+	private static void editarAnotacao(Scanner scanner,GerenciadorDeAnotacoes gerenciador) {
+		scanner.nextLine();
+		System.out.println("Digite o titulo da anotacao");
+		String titulo = scanner.nextLine();
+		System.out.println("Digite o corpo novo");
+		String corpo = scanner.nextLine();
+		gerenciador.editarAnotacao(titulo, corpo );
 	}
 	private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoes gerenciador) {
 		System.out.println("Lista de anotacoes:");

@@ -34,7 +34,20 @@ public class GerenciadorDeAnotacoes {
 		
 		//https://www.geeksforgeeks.org/arraylist-listiterator-method-in-java-with-examples/
 	}
-
+	public void editarAnotacao(String tituloAnotacao, String corpoAnotacao) {
+		boolean achei = false;
+		for (int i=0;i< anotacoes.size();i++) {
+			if (anotacoes.get(i).getTitulo().equals(tituloAnotacao) ) {
+				achei = true;
+				System.out.println(anotacoes.get(i));
+				Anotacao anotacao = anotacoes.get(i);
+				anotacao.setCorpo(corpoAnotacao);
+			}
+		}
+		if (achei == false) {
+			System.out.println("Anotação inexistente");
+		}
+	}
 	public void mostrarAnotacaoPeloTitulo(String tituloAnotacao) {
 		boolean achei = false;
 		for (int i=0;i< anotacoes.size();i++) {
