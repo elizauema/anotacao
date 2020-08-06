@@ -1,4 +1,4 @@
-package br.com.eliza.anotacoesapp;
+package br.com.eliza.anotacoesapp.model;
 
 public class Anotacao {
 	

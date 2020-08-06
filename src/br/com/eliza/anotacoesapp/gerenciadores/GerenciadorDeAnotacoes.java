@@ -1,8 +1,10 @@
-package br.com.eliza.anotacoesapp;
+package br.com.eliza.anotacoesapp.gerenciadores;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+
+import br.com.eliza.anotacoesapp.model.Anotacao;
 
 public class GerenciadorDeAnotacoes {
 
