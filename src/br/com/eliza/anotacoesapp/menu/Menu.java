@@ -1,19 +1,27 @@
 package br.com.eliza.anotacoesapp.menu;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import br.com.eliza.anotacoesapp.gerenciadores.GerenciadorDeAnotacoes;
+import br.com.eliza.anotacoesapp.gerenciadores.GerenciadorDeAnotacoesJson;
 import br.com.eliza.anotacoesapp.model.Anotacao;
 
 public class Menu {
 	
-		public void mostrarMenu() {
+		private String caminhoArquivoJson;
+	
+		public Menu(String caminhoArquivoJson){
+			this.caminhoArquivoJson = caminhoArquivoJson;
+		}
+	
+		public void mostrarMenu() throws IOException {
 			
 			byte opcaoDigitada = 0;
 			
 			Scanner scanner = new Scanner(System.in);
 			
-			GerenciadorDeAnotacoes gerenciador = new GerenciadorDeAnotacoes();
+			GerenciadorDeAnotacoesJson gerenciador = new GerenciadorDeAnotacoesJson(this.caminhoArquivoJson);
 			
 			while(opcaoDigitada != 6) {
 				
@@ -63,7 +71,7 @@ public class Menu {
 
 		}
 
-		private static void criarAnotacao(Scanner scanner, GerenciadorDeAnotacoes gerenciador) {
+		private static void criarAnotacao(Scanner scanner, GerenciadorDeAnotacoesJson gerenciador) throws IOException {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
@@ -79,29 +87,29 @@ public class Menu {
 				System.out.println();
 			}
 		}
-		private static void removerAnotacao(Scanner scanner,GerenciadorDeAnotacoes gerenciador) {
+		private static void removerAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
-			gerenciador.removerAnotacao(titulo);
+			//gerenciador.removerAnotacao(titulo);
 		}
-		private static void editarAnotacao(Scanner scanner,GerenciadorDeAnotacoes gerenciador) {
+		private static void editarAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
 			System.out.println("Digite o corpo novo");
 			String corpo = scanner.nextLine();
-			gerenciador.editarAnotacao(titulo, corpo );
+			//gerenciador.editarAnotacao(titulo, corpo );
 		}
-		private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoes gerenciador) {
+		private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoesJson gerenciador) {
 			System.out.println("Lista de anotacoes:");
-			gerenciador.listarAnotacoes();
+			//gerenciador.listarAnotacoes();
 		}
-		private static void mostrarAnotacaoPeloTitulo(Scanner scanner,GerenciadorDeAnotacoes gerenciador) {
+		private static void mostrarAnotacaoPeloTitulo(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
-			gerenciador.mostrarAnotacaoPeloTitulo(titulo);
+			//gerenciador.mostrarAnotacaoPeloTitulo(titulo);
 		}
 	}
 
