@@ -39,6 +39,27 @@ public class GerenciadorDeAnotacoesJson {
 		
 	}
 	
+	public void editarAnotacao(String titulo, String  newcorpo) throws IOException {
+		List<Anotacao> anotacoes =  getTodasAnotacoes();
+		
+		if (verificarSeAnotacaoExiste(titulo, anotacoes)) {
+			for(Anotacao anotacao : anotacoes) {
+				if (titulo.equals(anotacao.getTitulo())) {
+					anotacao.setCorpo(newcorpo);
+		           
+				}
+			
+			}
+			salvarAnotacoesNoArquivo(anotacoes);
+			
+		}
+		else { 
+			System.out.println("Titulo " + titulo + " inexistente");
+			
+		}
+		
+	}
+	
 	public List<Anotacao> getTodasAnotacoes() throws FileNotFoundException {
 		if (verificaSeArquivoJsonExiste()) {
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(caminhoArquivoJson));

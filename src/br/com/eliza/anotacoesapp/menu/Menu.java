@@ -1,5 +1,6 @@
 package br.com.eliza.anotacoesapp.menu;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -46,7 +47,6 @@ public class Menu {
 					removerAnotacao(scanner, gerenciador);
 					break;
 				case 3:
-					System.out.println("Foi digitada a opcao 3");
 					editarAnotacao(scanner,gerenciador);
 					break;
 				case 4:
@@ -93,13 +93,13 @@ public class Menu {
 			String titulo = scanner.nextLine();
 			//gerenciador.removerAnotacao(titulo);
 		}
-		private static void editarAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
+		private static void editarAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) throws IOException {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
 			System.out.println("Digite o corpo novo");
 			String corpo = scanner.nextLine();
-			//gerenciador.editarAnotacao(titulo, corpo );
+			gerenciador.editarAnotacao(titulo, corpo );
 		}
 		private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoesJson gerenciador) {
 			System.out.println("Lista de anotacoes:");
