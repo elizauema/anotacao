@@ -101,9 +101,9 @@ public class Menu {
 			String corpo = scanner.nextLine();
 			gerenciador.editarAnotacao(titulo, corpo );
 		}
-		private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoesJson gerenciador) {
+		private static void listarAnotacoes(Scanner scanner, GerenciadorDeAnotacoesJson gerenciador) throws FileNotFoundException {
 			System.out.println("Lista de anotacoes:");
-			//gerenciador.listarAnotacoes();
+			gerenciador.listarAnotacoes();
 		}
 		private static void mostrarAnotacaoPeloTitulo(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
 			scanner.nextLine();

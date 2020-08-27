@@ -105,5 +105,13 @@ public class GerenciadorDeAnotacoesJson {
 		writer.flush();
 		writer.close();
 	}
+	
+	public void listarAnotacoes() throws FileNotFoundException  {
+		List<Anotacao> anotacoes = getTodasAnotacoes();
+		for (Anotacao anotacao : anotacoes) {
+			System.out.println("Anotacao [" + anotacao + "]");
+			
+		}
+	}
 
 }
