@@ -3,8 +3,6 @@ package br.com.eliza.anotacoesapp.menu;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-
-import br.com.eliza.anotacoesapp.gerenciadores.GerenciadorDeAnotacoes;
 import br.com.eliza.anotacoesapp.gerenciadores.GerenciadorDeAnotacoesJson;
 import br.com.eliza.anotacoesapp.model.Anotacao;
 
@@ -87,11 +85,11 @@ public class Menu {
 				System.out.println();
 			}
 		}
-		private static void removerAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
+		private static void removerAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) throws IOException {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
-			//gerenciador.removerAnotacao(titulo);
+			gerenciador.removerAnotacao(titulo);
 		}
 		private static void editarAnotacao(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) throws IOException {
 			scanner.nextLine();
@@ -105,11 +103,11 @@ public class Menu {
 			System.out.println("Lista de anotacoes:");
 			gerenciador.listarAnotacoes();
 		}
-		private static void mostrarAnotacaoPeloTitulo(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) {
+		private static void mostrarAnotacaoPeloTitulo(Scanner scanner,GerenciadorDeAnotacoesJson gerenciador) throws FileNotFoundException {
 			scanner.nextLine();
 			System.out.println("Digite o titulo da anotacao");
 			String titulo = scanner.nextLine();
-			//gerenciador.mostrarAnotacaoPeloTitulo(titulo);
+			gerenciador.mostrarAnotacaoPeloTitulo(titulo);
 		}
 	}
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import br.com.eliza.anotacoesapp.menu.Menu;
 
 public class Principal {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		try {
 			String caminhoArquivoJson = "C:\\Users\\eliza\\eclipse-workspace\\anotacao\\anotacoes\\anotacoes.json";

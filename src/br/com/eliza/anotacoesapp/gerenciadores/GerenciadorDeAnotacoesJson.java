@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -18,65 +19,65 @@ import com.google.gson.reflect.TypeToken;
 import br.com.eliza.anotacoesapp.model.Anotacao;
 
 public class GerenciadorDeAnotacoesJson {
-	
+
 	private Gson gson = new Gson();
 	private String caminhoArquivoJson;
-	
+
 	public GerenciadorDeAnotacoesJson(String caminhoArquivoJson) {
 		this.caminhoArquivoJson = caminhoArquivoJson;
 	}
 
-	public void criarAnotacao(Anotacao anotacao) throws IOException {		
+	public void criarAnotacao(Anotacao anotacao) throws IOException {
 		List<Anotacao> anotacoes = getTodasAnotacoes();
-		
-		if(verificarSeAnotacaoExiste(anotacao.getTitulo(), anotacoes)) {			
+
+		if (verificarSeAnotacaoExiste(anotacao.getTitulo(), anotacoes)) {
 			System.out.println("Anotacao invalida. Esse titulo [" + anotacao.getTitulo() + "] ja existe.");
-		}else {
+		} else {
 			anotacoes.add(anotacao);
 			salvarAnotacoesNoArquivo(anotacoes);
 			System.out.println("Anotacao [" + anotacao.getTitulo() + "] foi adicionada!");
 		}
-		
+
 	}
-	
-	public void editarAnotacao(String titulo, String  newcorpo) throws IOException {
-		List<Anotacao> anotacoes =  getTodasAnotacoes();
-		
+
+	public void editarAnotacao(String titulo, String newcorpo) throws IOException {
+		List<Anotacao> anotacoes = getTodasAnotacoes();
+
 		if (verificarSeAnotacaoExiste(titulo, anotacoes)) {
-			for(Anotacao anotacao : anotacoes) {
+			for (Anotacao anotacao : anotacoes) {
 				if (titulo.equals(anotacao.getTitulo())) {
 					anotacao.setCorpo(newcorpo);
-		           
+
 				}
-			
+
 			}
 			salvarAnotacoesNoArquivo(anotacoes);
-			
-		}
-		else { 
+
+		} else {
 			System.out.println("Titulo " + titulo + " inexistente");
-			
+
 		}
-		
+
 	}
-	
+
 	public List<Anotacao> getTodasAnotacoes() throws FileNotFoundException {
 		if (verificaSeArquivoJsonExiste()) {
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(caminhoArquivoJson));
-			Type type = new TypeToken<ArrayList<Anotacao>>() {}.getType();
+			Type type = new TypeToken<ArrayList<Anotacao>>() {
+			}.getType();
 			ArrayList<Anotacao> lista = gson.fromJson(bufferedReader, type);
 			return lista;
 		} else {
 			return new ArrayList<Anotacao>();
 		}
 	}
-	
+
 	public boolean verificaSeArquivoJsonExiste() {
 		return Files.exists(Paths.get(caminhoArquivoJson));
 	}
-	
+
 	private boolean verificarSeAnotacaoExiste(String titulo, List<Anotacao> anotacoes) {
-		//JAVA 8
+		// JAVA 8
 //		long totalDeAnotacoes = anotacoes.stream()
 //			.filter(anotacao -> anotacao.getTitulo().equals(titulo))
 //			.count();
@@ -85,19 +86,19 @@ public class GerenciadorDeAnotacoesJson {
 //			return false;
 //		
 //		return true;
-		
-		//JAVA 7 OU ANTERIOR
+
+		// JAVA 7 OU ANTERIOR
 		boolean anotacaoExiste = false;
-		for(Anotacao anotacao : anotacoes) {
-			if(anotacao.getTitulo().equals(titulo)) {
+		for (Anotacao anotacao : anotacoes) {
+			if (anotacao.getTitulo().equals(titulo)) {
 				anotacaoExiste = true;
 			}
 		}
-		
+
 		return anotacaoExiste;
-		
+
 	}
-	
+
 	public void salvarAnotacoesNoArquivo(List<Anotacao> anotacoes) throws IOException {
 		System.out.println("Salvando...");
 		Writer writer = new FileWriter(caminhoArquivoJson);
@@ -105,13 +106,50 @@ public class GerenciadorDeAnotacoesJson {
 		writer.flush();
 		writer.close();
 	}
-	
-	public void listarAnotacoes() throws FileNotFoundException  {
+
+	public void listarAnotacoes() throws FileNotFoundException {
 		List<Anotacao> anotacoes = getTodasAnotacoes();
 		for (Anotacao anotacao : anotacoes) {
 			System.out.println("Anotacao [" + anotacao + "]");
-			
+
 		}
 	}
 
+	public void removerAnotacao(String titulo) throws IOException {
+		List<Anotacao> anotacoes = getTodasAnotacoes();
+		int qtdeAnotacoes = anotacoes.size();
+		Iterator<Anotacao> iterator = anotacoes.iterator();
+		while (iterator.hasNext()) {
+			Anotacao anotacao = iterator.next();
+			if (titulo.equals(anotacao.getTitulo())) {
+				iterator.remove();
+			}
+		}
+
+		if (qtdeAnotacoes == anotacoes.size()) {
+			System.out.println("Titulo inexistente");
+		} else {
+			salvarAnotacoesNoArquivo(anotacoes);
+			System.out.println("Anotacao " + titulo + " excluida");
+		}
+	}
+
+	public void mostrarAnotacaoPeloTitulo(String titulo) throws FileNotFoundException {
+		List<Anotacao> anotacoes = getTodasAnotacoes();
+		boolean anotacaoExiste = false;
+		Anotacao anotacaoEncontrada = null;
+
+		for (Anotacao anotacao : anotacoes) {
+			if (titulo.equals(anotacao.getTitulo())) {
+				anotacaoExiste = true;
+				anotacaoEncontrada = anotacao;
+
+			}
+
+		}
+		if (anotacaoExiste == true) {
+			System.out.println("Titulo " + titulo + " Corpo:" + anotacaoEncontrada.getCorpo());
+
+		}
+	}
 }
