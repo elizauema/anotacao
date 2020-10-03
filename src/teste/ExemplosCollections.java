@@ -61,7 +61,7 @@ public class ExemplosCollections {
 		//1-fazer uma lista de compras, pode ser lista de String. Faz um for e mostra todos elementos da lista.
 		//2-fazer um HashMap de String, String. Na chave vai ter o nome do aluno, e no valor vai ter uma descrição do aluno. Faz um for e imprime todas as chaves e todos os valores.
 	}
-
+	
 	private static void exemploLista() {
 		//Voador beijaFlor = new BeijaFlor();
 		//Voador morcego = new Morcego();
